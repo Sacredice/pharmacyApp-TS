@@ -5,7 +5,6 @@ import City from "./pages/City"
 
 
 function App() {
-  const [search, setSearch] = useState("")
 
   return (
     <>

@@ -2,12 +2,8 @@ import { useState } from 'react'
 import Map from "../components/Map"
 import CityList from '../components/CityList'
 
-interface PropTypes {
-  search: string,
-  setSearch: React.Dispatch<React.SetStateAction<string>>
-}
 
-type menuStateType = "map" | "list" 
+type menuStateType = "map" | "list"
 
 function Home() {
   const [menuType, setMenuType] = useState<menuStateType>("list")
@@ -16,7 +12,7 @@ function Home() {
     <div>
       <button onClick={() => setMenuType("list")} disabled={menuType === "list"}>Liste</button>
       <button onClick={() => setMenuType("map")} disabled={menuType === "map"}>Harita</button>
-      {menuType === "map" ? <Map /> : <CityList /> }
+      {menuType === "map" ? <Map /> : <CityList />}
     </div>
   )
 }
