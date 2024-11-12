@@ -9,14 +9,19 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/:city" element={<City />}></Route>
+      <header>
+        <h1>Nöbetçi Eczaneler</h1>
+      </header>
+      <main>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/:city" element={<City />}></Route>
 
 
-        </Routes>
-      </Router>
+          </Routes>
+        </Router>
+      </main>
     </>
   )
 }

@@ -1,15 +1,22 @@
-import React from 'react'
+import { useState } from 'react'
 import Map from "../components/Map"
+import CityList from '../components/CityList'
 
 interface PropTypes {
   search: string,
   setSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
+type menuStateType = "map" | "list" 
+
 function Home() {
+  const [menuType, setMenuType] = useState<menuStateType>("list")
+
   return (
     <div>
-      <Map />
+      <button onClick={() => setMenuType("list")} disabled={menuType === "list"}>Liste</button>
+      <button onClick={() => setMenuType("map")} disabled={menuType === "map"}>Harita</button>
+      {menuType === "map" ? <Map /> : <CityList /> }
     </div>
   )
 }
