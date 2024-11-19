@@ -34,7 +34,11 @@ export function dynamicSort<T>(property: keyof T | string) {
   }
 }
 
-interface dataType {
+export interface dataType {
+  name: string,
+  dist: string,
+  address: string,
+  phone: string,
   loc: string,
   [key: string]: any,
 }

@@ -5,7 +5,7 @@ interface PropsType {
   setSearch: React.Dispatch<React.SetStateAction<string>>,
 }
 
-function SearchBar({ search, setSearch}: PropsType) {
+function SearchBar({ search, setSearch }: PropsType) {
   return (
     <div>
       <form className='searchForm' onSubmit={(e) => e.preventDefault()}>
