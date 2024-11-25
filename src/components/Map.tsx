@@ -9,7 +9,7 @@ function Map() {
     navigate(name ?? "/") // Cannot be null TS error
   }
   return (
-    <div>
+    <div className="mx-auto w-[800px]">
       <Turkey type="select-single" hints size={800} mapColor="skyblue" hoverColor="red" onSelect={handleOnSelect}></Turkey>
     </div>
   )

@@ -101,16 +101,16 @@ function City() {
 
     <div>
       <SearchBar search={pharmacySearch} setSearch={setPharmacySearch} />
-      {isLoading && <p className='statusMsg'><b>Liste Yükleniyor...</b></p>}
-      {!isLoading && fetchError && <b className='statusMsg' style={{ color: "red" }}>{fetchError}</b>}
-      {!isLoading && !fetchError && <section className='districtSection'>
-        <ul className='districtList'>
+      {isLoading && <p><b>Liste Yükleniyor...</b></p>}
+      {!isLoading && fetchError && <b style={{ color: "red" }}>{fetchError}</b>}
+      {!isLoading && !fetchError && <section>
+        <>
           {filteredPharmacies.map((pharmacyObj, key) => (
             <Pharmacy pharmacyObj={pharmacyObj} key={key} />
           ))}
-        </ul>
+        </>
       </section>}
-      <BsArrowLeftSquareFill title='Geri Dön' className='goBackButton' onClick={handleBack} />
+      <BsArrowLeftSquareFill title='Geri Dön' onClick={handleBack} />
     </div>
   );
 }

@@ -1,18 +1,75 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLocationContext } from "../context/LocationContext"
 import Map from "../components/Map"
 import CityList from '../components/CityList'
+import axios from "axios"
+import { IoLocationSharp } from "react-icons/io5";
 
 
 type menuStateType = "map" | "list"
 
 function Home() {
   const [menuType, setMenuType] = useState<menuStateType>("list")
+  const { userLocation, setUserLocation } = useLocationContext()
+  const navigate = useNavigate()
+
+  interface coordsType {
+    accuracy: number,
+    lat: number,
+    lon: number,
+    city?: string,
+  }
+
+  const getCityFromCoords = async (coordinates: coordsType): Promise<void> => {
+    const lat = coordinates.lat;
+    const lon = coordinates.lon;
+    try {
+      const response = await axios(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+      const province = response.data.address.province;
+
+      if (coordinates.accuracy < 1200) {
+        setUserLocation(coordinates);
+        navigate(`/${province}`);
+      } else {
+        alert(`UYARI: Cihazın konum hassasiyeti yeterli olmadığından ${province} eczaneleri listesine yönlendirileceksiniz!`);
+        setUserLocation(null);
+        navigate(`/${province}`);
+      }
+    } catch (err) {
+      console.log(`Error: ${(err as Error).message}`);
+    }
+  }
+
+  const findUserLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coordinates: coordsType = {
+        accuracy: position.coords.accuracy,
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      };
+      getCityFromCoords(coordinates);
+      console.log(userLocation)
+    }, err => console.log(err));
+  }
+
 
   return (
     <div>
-      <button onClick={() => setMenuType("list")} disabled={menuType === "list"}>Liste</button>
-      <button onClick={() => setMenuType("map")} disabled={menuType === "map"}>Harita</button>
-      {menuType === "map" ? <Map /> : <CityList />}
+      <div className='hidden lg:flex max-w-[800px] justify-between mx-auto mb-8'>
+        <div>
+          <button className='bg-blue-600 text-white py-2 px-4 font-bold rounded disabled:opacity-50 mr-3' onClick={() => setMenuType("list")} disabled={menuType === "list"}>Liste</button>
+          <button className='bg-blue-600 text-white py-2 px-4 font-bold rounded disabled:opacity-50' onClick={() => setMenuType("map")} disabled={menuType === "map"}>Harita</button>
+        </div>
+        <button className='bg-red-500 text-white py-2 px-4 font-bold rounded hover:bg-red-600' onClick={findUserLocation}><p><span className='inline-block mr-1'><IoLocationSharp /></span>Konuma En Yakın 3 Eczane</p></button>
+      </div>
+      <div className='hidden lg:block '>
+        {menuType === "map" ? <Map /> : <CityList />}
+      </div>
+      <div className='lg:hidden'>
+        <button className='block bg-red-500 text-white py-2 px-4 font-bold w-full mx-auto max-w-[600px] sm:rounded' onClick={findUserLocation}><p><span className='inline-block mr-1'><IoLocationSharp /></span>Konuma En Yakın 3 Eczane</p></button>
+        <CityList />
+      </div>
     </div>
   )
 }

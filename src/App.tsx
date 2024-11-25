@@ -6,9 +6,9 @@ import City from "./pages/City"
 function App() {
 
   return (
-    <>
+    <div>
       <header>
-        <h1>Nöbetçi Eczaneler</h1>
+        <h1 className="font-bold text-3xl lg:text-4xl text-center mb-6">Nöbetçi Eczaneler</h1>
       </header>
       <main>
         <Router>
@@ -18,7 +18,7 @@ function App() {
           </Routes>
         </Router>
       </main>
-    </>
+    </div>
   )
 }
 

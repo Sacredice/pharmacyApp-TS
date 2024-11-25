@@ -10,14 +10,14 @@ export const nextShiftTimestamp = (): number => {
       const minDiff = 30 < minNow ? 90 - minNow : 30 - minNow;
       const hourDiff = 30 < minNow ? 4 - hourNow : 5 - hourNow;
       const nextShift = (now.getTime() + (hourDiff * 60 * 60 * 1000) + (minDiff * 60 * 1000) - (119 * 1000));
-      console.log("Today's shift change not happened yet(before 8:30 TR timezone)", nextShift);
+      // console.log("Today's shift change not happened yet(before 8:30 TR timezone)", nextShift);
       return nextShift;
   } else {
       const minDiff = minNow < 30 ? minNow - 30 + 60 : minNow - 30;
       const hourDiff = minNow < 30 ? hourNow - 6 : hourNow - 5;
       now.setDate(now.getDate() + 1)
       const nextShift = (now.getTime() - (hourDiff * 60 * 60 * 1000) - (minDiff * 60 * 1000) - (119 * 1000));
-      console.log("Today's shift has changed next one is tomorrow at 8:30", nextShift);
+      // console.log("Today's shift has changed next one is tomorrow at 8:30", nextShift);
       return nextShift;
   }
 }

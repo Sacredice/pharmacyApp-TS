@@ -7,18 +7,18 @@ interface PropsType {
 
 function SearchBar({ search, setSearch }: PropsType) {
   return (
-    <div>
-      <form className='searchForm' onSubmit={(e) => e.preventDefault()}>
+    <div className="flex justify-center my-3">
+      <form className="flex max-w-[600px] w-full" onSubmit={(e) => e.preventDefault()}>
         <input
-          className="searchBar"
+          className="text-lg p-1 border border-black rounded grow"
           type="text"
           placeholder='Listede Ara'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           autoFocus
         />
-        <button>
-          <FaSearch className="searchIcon" />
+        <button className="flex ml-2 w-[38px] h-[38px] justify-center items-center rounded border border-black rounded">
+          <FaSearch />
         </button>
       </form>
     </div>
