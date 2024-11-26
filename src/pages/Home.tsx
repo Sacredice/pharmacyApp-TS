@@ -67,7 +67,7 @@ function Home() {
         {menuType === "map" ? <Map /> : <CityList />}
       </div>
       <div className='lg:hidden'>
-        <button className='block bg-red-500 text-white py-2 px-4 font-bold w-full mx-auto max-w-[600px] sm:rounded' onClick={findUserLocation}><p><span className='inline-block mr-1'><IoLocationSharp /></span>Konuma En Yakın 3 Eczane</p></button>
+        <button className='block bg-red-500 text-white py-2 px-4 font-bold w-full mx-auto max-w-[600px] sm:rounded sticky top-0' onClick={findUserLocation}><p><span className='inline-block mr-1'><IoLocationSharp /></span>Konuma En Yakın 3 Eczane</p></button>
         <CityList />
       </div>
     </div>

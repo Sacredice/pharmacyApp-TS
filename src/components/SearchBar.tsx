@@ -8,7 +8,7 @@ interface PropsType {
 function SearchBar({ search, setSearch }: PropsType) {
   return (
     <div className="flex justify-center my-3">
-      <form className="flex max-w-[600px] w-full" onSubmit={(e) => e.preventDefault()}>
+      <form className="flex w-full" onSubmit={(e) => e.preventDefault()}>
         <input
           className="text-lg p-1 border border-black rounded grow"
           type="text"
@@ -17,7 +17,7 @@ function SearchBar({ search, setSearch }: PropsType) {
           onChange={(e) => setSearch(e.target.value)}
           autoFocus
         />
-        <button className="flex ml-2 w-[38px] h-[38px] justify-center items-center rounded border border-black rounded">
+        <button className="flex bg-gray-300 ml-1 w-[38px] h-[38px] justify-center items-center border border-black rounded">
           <FaSearch />
         </button>
       </form>

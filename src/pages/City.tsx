@@ -99,18 +99,20 @@ function City() {
 
   return (
 
-    <div>
+    <div className="max-w-[600px] mx-auto">
       <SearchBar search={pharmacySearch} setSearch={setPharmacySearch} />
       {isLoading && <p><b>Liste Yükleniyor...</b></p>}
       {!isLoading && fetchError && <b style={{ color: "red" }}>{fetchError}</b>}
       {!isLoading && !fetchError && <section>
-        <>
+        <ul className="border border-black rounded divide-y divide-black">
           {filteredPharmacies.map((pharmacyObj, key) => (
-            <Pharmacy pharmacyObj={pharmacyObj} key={key} />
+            <li>
+              <Pharmacy pharmacyObj={pharmacyObj} key={key} />
+            </li>
           ))}
-        </>
+        </ul>
       </section>}
-      <BsArrowLeftSquareFill title='Geri Dön' onClick={handleBack} />
+      <BsArrowLeftSquareFill className="size-11 absolute top-0 left-0 " title='Geri Dön' onClick={handleBack} />
     </div>
   );
 }
