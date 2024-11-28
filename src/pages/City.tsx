@@ -38,8 +38,6 @@ function City() {
 
       if (storageData && ((JSON.parse(storageData))[1] > Date.now())) {
         const dataArray = JSON.parse((storageData))[0];
-        console.log(dataArray)
-        console.log("userlocation", userLocation);
         if (userLocation) {
           setPharmacyObjs(getThreeClosest(userLocation, dataArray));
           setUserLocation(null);
@@ -67,7 +65,11 @@ function City() {
               setPharmacyObjs(sortedData);
             }
             setFetchError(null);
+          } else {
+            setFetchError("Server isteği reddedildi. API aylık 100 istek limiti aşılmış olabilir!")
+            console.log(fetchError)
           }
+
         } catch (err) {
           console.log(`Error: ${(err as Error).message}`);
           console.log(`Error: ${err as Error}`);
@@ -101,18 +103,16 @@ function City() {
 
     <div className="max-w-[600px] mx-auto">
       <SearchBar search={pharmacySearch} setSearch={setPharmacySearch} />
-      {isLoading && <p><b>Liste Yükleniyor...</b></p>}
-      {!isLoading && fetchError && <b style={{ color: "red" }}>{fetchError}</b>}
+      {isLoading && <p className="text-3xl text-center text-blue-800"><b>Liste Yükleniyor...</b></p>}
+      {!isLoading && fetchError && <p className=" text-2xl text-red-500 text-center font-bold">{fetchError}</p>}
       {!isLoading && !fetchError && <section>
         <ul className="border border-black rounded divide-y divide-black">
           {filteredPharmacies.map((pharmacyObj, key) => (
-            <li>
-              <Pharmacy pharmacyObj={pharmacyObj} key={key} />
-            </li>
+            <Pharmacy pharmacyObj={pharmacyObj} key={key} />
           ))}
         </ul>
       </section>}
-      <BsArrowLeftSquareFill className="size-11 absolute top-0 left-0 " title='Geri Dön' onClick={handleBack} />
+      <BsArrowLeftSquareFill className="size-11 absolute top-0 left-0 dark:fill-slate-100" title='Geri Dön' onClick={handleBack} />
     </div>
   );
 }

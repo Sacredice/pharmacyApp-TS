@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   scrollbar-gutter: stable;
   background-color: rgb(226 232 240);
-}
+} */

@@ -5,7 +5,6 @@ function Map() {
   const navigate = useNavigate()
 
   function handleOnSelect(name: string | null) {
-    console.log(name)
     navigate(name ?? "/") // Cannot be null TS error
   }
   return (

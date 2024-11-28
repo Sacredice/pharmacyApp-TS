@@ -6,9 +6,9 @@ import City from "./pages/City"
 function App() {
 
   return (
-    <div>
+    <div className="min-h-screen bg-slate-200 dark:bg-slate-900">
       <header>
-        <h1 className="font-bold text-3xl lg:text-4xl text-center mb-6">Nöbetçi Eczaneler</h1>
+        <h1 className="font-bold text-3xl lg:text-4xl text-center text-red-600 mb-4">Nöbetçi Eczaneler</h1>
       </header>
       <main>
         <Router>

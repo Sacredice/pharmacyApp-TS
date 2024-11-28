@@ -31,6 +31,7 @@ function Home() {
       if (coordinates.accuracy < 1200) {
         setUserLocation(coordinates);
         navigate(`/${province}`);
+        console.log("acurate", province)
       } else {
         alert(`UYARI: Cihazın konum hassasiyeti yeterli olmadığından ${province} eczaneleri listesine yönlendirileceksiniz!`);
         setUserLocation(null);
@@ -49,8 +50,12 @@ function Home() {
         lon: position.coords.longitude
       };
       getCityFromCoords(coordinates);
-      console.log(userLocation)
-    }, err => console.log(err));
+    }, err => {
+      console.log("err", err)
+      if (err.message === "User denied Geolocation") {
+        alert(`Lokasyon izni kapalı, kullanmak için lokasyon izni gereklidir!\n${err.message}`)
+      }
+    });
   }
 
 
