@@ -66,7 +66,7 @@ function City() {
             }
             setFetchError(null);
           } else {
-            setFetchError("Server isteği reddedildi. API aylık 100 istek limiti aşılmış olabilir!")
+            setFetchError("Server isteği reddedildi. Server hizmet dışı veya API aylık 100 istek limiti aşılmış olabilir!")
             console.log(fetchError)
           }
 

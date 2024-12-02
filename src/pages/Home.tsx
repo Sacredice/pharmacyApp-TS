@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useLocationContext } from "../context/LocationContext"
 import Map from "../components/Map"
 import CityList from '../components/CityList'
+import InfoModal from '../components/InfoModal'
 import axios from "axios"
 import { IoLocationSharp } from "react-icons/io5";
+import { BsFillInfoSquareFill } from "react-icons/bs";
 
 
 type menuStateType = "map" | "list"
@@ -12,6 +14,7 @@ type menuStateType = "map" | "list"
 function Home() {
   const [menuType, setMenuType] = useState<menuStateType>("list")
   const { userLocation, setUserLocation } = useLocationContext()
+  const [infoModal, setInfoModal] = useState<boolean>(false)
   const navigate = useNavigate()
 
   interface coordsType {
@@ -75,6 +78,8 @@ function Home() {
         <button className='block bg-red-500 text-white py-2 px-4 font-bold w-full mx-auto max-w-[600px] sm:rounded sticky top-0' onClick={findUserLocation}><p><span className='inline-block mr-1'><IoLocationSharp /></span>Konuma En Yakın 3 Eczane</p></button>
         <CityList />
       </div>
+      <BsFillInfoSquareFill title='info' className='absolute top-0 right-0 size-11' onClick={() => setInfoModal(!infoModal)} />
+      {infoModal && <InfoModal setInfoModal={setInfoModal} />}
     </div>
   )
 }
