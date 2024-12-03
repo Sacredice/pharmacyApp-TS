@@ -9,7 +9,7 @@ function Map() {
   }
   return (
     <div className="mx-auto w-[800px]">
-      <h1 className="text-center text-[28px] font-semibold mb-6 cursor-default">Haritadan İl Seçin</h1>
+      <h1 className="text-center text-[28px] font-semibold mb-6 cursor-default">Haritadan Şehir Seçin</h1>
       <Turkey type="select-single" hints size={800} mapColor="skyblue" hoverColor="red" onSelect={handleOnSelect}></Turkey>
     </div>
   )
