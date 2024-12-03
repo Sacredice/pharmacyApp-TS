@@ -13,7 +13,7 @@ type menuStateType = "map" | "list"
 
 function Home() {
   const [menuType, setMenuType] = useState<menuStateType>("list")
-  const { userLocation, setUserLocation } = useLocationContext()
+  const { setUserLocation } = useLocationContext()
   const [infoModal, setInfoModal] = useState<boolean>(false)
   const navigate = useNavigate()
 
